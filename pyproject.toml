@@ -1,0 +1,43 @@
+[project]
+name = "shardproxy"
+version = "1.0.0"
+description = "Sharding with SQLAlchemy"
+readme = "README.rst"
+classifiers = ["License :: OSI Approved :: ISC License (ISCL)"]
+requires-python = ">=3.12"
+dependencies = ["sqlalchemy[asyncio]>=2.0"]
+
+[dependency-groups]
+dev = [
+    "asyncpg>=0.30.0",
+    "psycopg[binary,pool]>=3.2.12",
+    "coverage>=7.12.0",
+    "isort>=7.0.0",
+    "mypy>=1.18.2",
+    "pytest>=8.4.2",
+    "pytest-asyncio>=1.3.0",
+    "ruff>=0.14.0",
+    "sphinx>=8.2.3",
+    "pytest-cov>=7.0.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.9.5,<0.10.0"]
+build-backend = "uv_build"
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+disallow_any_decorated = true
+disallow_any_unimported = true
+#disallow_any_explicit = true
+#disallow_any_expr = true
+
+[tool.isort]
+known_first_party = ["shardproxy"]
+known_local_folder = ["helpers"]
+multi_line_output = 5
+balanced_wrapping = true
+include_trailing_comma = true
+atomic = true
+quiet = true
