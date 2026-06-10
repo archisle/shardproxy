@@ -8,12 +8,12 @@ from shardproxy import ShardProxy
 
 DRIVER_URLS = {
     "asyncpg": [
-        "postgresql+asyncpg://localhost:5170/sharding1",
-        "postgresql+asyncpg://localhost:5170/sharding2",
+        "postgresql+asyncpg://localhost/sharding1",
+        "postgresql+asyncpg://localhost/sharding2",
     ],
     "psycopg": [
-        "postgresql+psycopg://localhost:5170/sharding1",
-        "postgresql+psycopg://localhost:5170/sharding2",
+        "postgresql+psycopg://localhost/sharding1",
+        "postgresql+psycopg://localhost/sharding2",
     ],
 }
 
