@@ -18,25 +18,24 @@ jobs:
         with:
           python-version: "3.14"
           pip-install: -r etc/requirements.uv.txt
-      - run: uv sync --all-extras
+      - run: uv sync
       - run: make sdist
       - uses: actions/upload-artifact@v7
         with: {name: "dist", path: "dist"}
 
-  publish:
-    name: "Publish"
+  publish-github:
+    name: "Publish to Github"
     runs-on: ubuntu-latest
     needs: [sdist]
     permissions:
       contents: write
     steps:
       - uses: actions/checkout@v6
+
       - uses: actions/setup-python@v6
         with:
           python-version: "3.14"
           pip-install: -r etc/requirements.uv.txt
-
-      - run: uv sync
 
       - name: "Get files"
         uses: actions/download-artifact@v8
@@ -84,15 +83,31 @@ jobs:
           if test "${PRERELEASE}" = "true"; then ghf="${ghf} --prerelease"; fi
           gh release create "v${VERSION}" "dist/${TGZ}" --title="${title}" ${ghf}
 
-      - name: "Upload to PYPI"
-        id: pypi_upload
-        env:
-          UV_NO_PROGRESS: true
-        run: |
-          ls -l dist
-          if test "${DRAFT}" = "false"; then
-            uv publish --no-progress dist/*
-          else
-            uv publish --no-progress --index testpypi dist/*
-          fi
+  publish-pypi:
+    if: ${{ !contains(github.ref_name, '.dev') }}
+    name: "Publish to PyPi"
+    runs-on: ubuntu-latest
+    needs: [sdist]
+    permissions:
+      id-token: write
+    environment: pypi
+    steps:
+      - uses: actions/download-artifact@v8
+        with: {name: "dist", path: "dist"}
+      - uses: pypa/gh-action-pypi-publish@cef221092ed1bacb1cc03d23a2d87d1d172e277b # v1.14.0
+
+  publish-testpypi:
+    if: ${{ contains(github.ref_name, '.dev') }}
+    name: "Publish to TestPyPi"
+    runs-on: ubuntu-latest
+    needs: [sdist]
+    permissions:
+      id-token: write
+    environment: testpypi
+    steps:
+      - uses: actions/download-artifact@v8
+        with: { name: "dist", path: "dist" }
+      - uses: pypa/gh-action-pypi-publish@cef221092ed1bacb1cc03d23a2d87d1d172e277b # v1.14.0
+        with: { repository-url: "https://test.pypi.org/legacy/" }
+
 
