@@ -15,8 +15,6 @@ updates:
       interval: "monthly"
     cooldown:
       default-days: 7
-    allow:
-      - dependency-type: "all"
 
   - package-ecosystem: "github-actions"
     directory: "/"
