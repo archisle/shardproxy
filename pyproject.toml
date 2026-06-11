@@ -1,6 +1,6 @@
 [project]
 name = "shardproxy"
-version = "1.0.0"
+version = "1.0.0.dev1"
 description = "Sharding with SQLAlchemy"
 readme = "README.rst"
 classifiers = ["License :: OSI Approved :: ISC License (ISCL)"]
