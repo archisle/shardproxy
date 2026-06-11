@@ -2,7 +2,7 @@
 NEWS
 ====
 
-ShardProxy v1.0.0.dev3
+ShardProxy v1.0.0.dev4
 ----------------------
 
 * Test release
