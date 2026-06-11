@@ -819,7 +819,7 @@ test = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "sqlalchemy", extras = ["asyncio"], specifier = ">=2.0" }]
+requires-dist = [{ name = "sqlalchemy", extras = ["asyncio"], specifier = ">=2.0.50" }]
 
 [package.metadata.requires-dev]
 dev = [

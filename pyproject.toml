@@ -5,7 +5,7 @@ description = "Sharding with SQLAlchemy"
 readme = "README.rst"
 classifiers = ["License :: OSI Approved :: ISC License (ISCL)"]
 requires-python = ">=3.12"
-dependencies = ["sqlalchemy[asyncio]>=2.0"]
+dependencies = ["sqlalchemy[asyncio]>=2.0.50"]
 
 [dependency-groups]
 dev = [
