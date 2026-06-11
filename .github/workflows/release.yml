@@ -47,8 +47,8 @@ jobs:
 
       - name: "Prepare"
         run: |
-          PACKAGE=$(python3 setup.py --name)
-          VERSION=$(python3 setup.py --version)
+          PACKAGE=$(uv version | sed 's/ .*//')
+          VERSION=$(uv version --short)
           TGZ="${PACKAGE}-${VERSION}.tar.gz"
 
           # default - gh:release, pypi
