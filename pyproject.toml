@@ -3,9 +3,24 @@ name = "shardproxy"
 version = "1.0.0"
 description = "Sharding with SQLAlchemy"
 readme = "README.rst"
-classifiers = ["License :: OSI Approved :: ISC License (ISCL)"]
+license = "ISC"
+license-files = ["COPYRIGHT"]
+authors = [{ name = "Marko Kreen", email = "markokr@gmail.com" }]
+classifiers = [
+    "Topic :: Database",
+    "Intended Audience :: Developers",
+    "Typing :: Typed",
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3",
+]
 requires-python = ">=3.12"
 dependencies = ["sqlalchemy[asyncio]>=2.0"]
+
+[project.urls]
+homepage = "https://pypi.org/project/shardproxy/"
+source = "https://github.com/archisle/shardproxy"
+issues = "https://github.com/archisle/shardproxy/issues"
+changelog = "https://github.com/archisle/shardproxy/blob/master/NEWS.rst"
 
 [dependency-groups]
 dev = [
@@ -44,10 +59,4 @@ balanced_wrapping = true
 include_trailing_comma = true
 atomic = true
 quiet = true
-
-[[tool.uv.index]]
-name = "testpypi"
-url = "https://test.pypi.org/simple/"
-publish-url = "https://test.pypi.org/legacy/"
-explicit = true
 
